@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудио Трансляция</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DJ STÆVICH Live</h1>
+        <audio id="audioPlayer" controls>
+            <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
+            Ваш браузер не поддерживает аудиоплеер.
+        </audio>
+        
+        <div class="controls">
+            <button id="playBtn">Играть</button>
+            <button id="pauseBtn">Пауза</button>
+        </div>
+        
+        <div class="track-info" id="trackInfo">Текущий трек: Загрузка...</div>
+        
+        <div class="volume-control">
+            <label for="volume">Громкость:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const trackInfo = document.getElementById('trackInfo');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const volumeControl = document.getElementById('volume');
+        const message = document.getElementById('message');
+
+        playBtn.addEventListener('click', () => {
+            audio.play();
+            trackInfo.innerText = 'Текущий трек: Играет';
+            message.innerText = 'Вы слушаете трансляцию!';
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            audio.pause();
+            trackInfo.innerText = 'Текущий трек: Пауза';
+            message.innerText = 'Трансляция приостановлена.';
+        });
+
+        volumeControl.addEventListener('input', (event) => {
+            audio.volume = event.target.value;
+            message.innerText = 'Громкость: ' + Math.round(event.target.value * 100) + '%';
+        });
+    </script>
+</body>
+</html>
