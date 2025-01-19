@@ -8,10 +8,10 @@
 }
 
 body {
-    font-family: Courier, monospace;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -48,6 +48,27 @@ audio {
     font-size: 18px;
     color: var(--muted-text-color);
     margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darken(var(--primary-color), 10%);
 }
 
 .volume-control {
@@ -154,7 +175,6 @@ audio {
     --muted-text-color: #999;
     --box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-
 
 @media (max-width: 768px) {
     h1 {
