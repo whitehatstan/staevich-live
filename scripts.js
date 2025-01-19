@@ -5,26 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = document.getElementById('message');
     const playBtn = document.getElementById('playBtn');
     const pauseBtn = document.getElementById('pauseBtn');
+    const progressBar = document.getElementById('progress');
     const themeToggle = document.getElementById('themeToggle');
 
-    // Функция для обновления текущего трека
+    // Обновление информации о треке
     function updateTrackInfo() {
-        fetch(' ')
-            .then(response => response.json())
-            .then(data => {
-                if (data.Track && data.Title) {
-                    trackInfo.textContent = `Сейчас играет: ${data.Track.Title}`;
-                } else {
-                    trackInfo.textContent = 'Загрузка...';
-                }
-            }).catch(error => {
-                console.error('Ошибка при получении данных о треке:', error);
-                trackInfo.textContent = 'Ошибка получения данных о треке.';
-            });
+        trackInfo.textContent = 'Текущий трек: Прямой эфир';
     }
 
-    // Автоматическая проверка текущего трека каждые 10 секунд
-    setInterval(updateTrackInfo, 10000);
+    // Инициализация
+    updateTrackInfo();
 
     // Обработка событий для кнопок Play и Pause
     playBtn.addEventListener('click', () => {
@@ -43,7 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
         message.textContent = `Громкость: ${Math.round(event.target.value * 100)}%`;
     });
 
-    // Обработка переключателя тем
+    // Обновление прогресс-бара
+    audio.addEventListener('timeupdate', () => {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+    });
+
+    // Переключение темы
     themeToggle.addEventListener('change', () => {
         document.body.classList.toggle('dark-theme');
         message.textContent = 'Темная тема включена';
