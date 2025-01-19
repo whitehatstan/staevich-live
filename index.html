@@ -24,17 +24,6 @@
         <div id="message" class="message"></div>
     </div>
 
-    <script>
-        const audio = document.getElementById('audioPlayer');
-        const trackInfo = document.getElementById('trackInfo');
-        const volumeControl = document.getElementById('volume');
-        const message = document.getElementById('message');
-
-        
-        volumeControl.addEventListener('input', (event) => {
-            audio.volume = event.target.value;
-            message.innerText = 'Громкость: ' + Math.round(event.target.value * 100) + '%';
-        });
-    </script>
+    <script><script src="scripts.js"></script>
 </body>
 </html>
