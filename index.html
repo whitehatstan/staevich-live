@@ -9,34 +9,27 @@
 <body>
     <div class="container">
         <h1>Слушайте Прямую Трансляцию</h1>
-        <div class="custom-audio-player">
-            <button id="playBtn" class="play-button">▶️</button>
-            <button id="pauseBtn" class="pause-button">⏸️</button>
-            <div class="progress-bar">
-                <div class="progress" id="progress"></div>
-            </div>
+        <div class="audio-player">
+            <audio id="audioPlayer" controls autoplay>
+                <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
+                Ваш браузер не поддерживает аудиоплеер.
+            </audio>
         </div>
         
-        <div class="track-info" id="trackInfo">Текущий трек: Загрузка...</div>
+        <div class="track-info" id="trackInfo">Текущий трек: Прямой эфир</div>
         
         <div class="volume-control">
             <label for="volume">Громкость:</label>
             <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
         </div>
 
-        <div id="message" class="message"></div>
+        <div class="theme-toggle">
+            <span>Ночной режим</span>
+            <label class="toggle">
+                <input type="checkbox" onclick="document.body.classList.toggle('dark-theme')">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </div>
-    
-    <div class="theme-toggle">
-        <span>Ночной режим</span>
-        <label class="toggle">
-            <input type="checkbox" id="themeToggle">
-            <span class="slider round"></span>
-        </label>
-    </div>
-
-    <audio id="audioPlayer" src="http://84.201.174.250:8000/live-staevich" autoplay></audio>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
