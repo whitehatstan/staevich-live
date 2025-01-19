@@ -1,64 +1,71 @@
+/* styles.css */
+
+:root {
+    --primary-color: #007bff; /* Основной цвет интерфейса */
+    --secondary-color: #f9f9f9; /* Цвет фона */
+    --text-color: #333; /* Цвет текста */
+    --muted-text-color: #666; /* Цвет второстепенного текста */
+    --border-radius: 10px; /* Радиус скругления углов */
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+body {
+    font-family: Courier, monospace;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
 .container {
-    width: 500px;
+    width: 600px;
     margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease;
 }
 
 h1 {
     text-align: center;
-    color: #333;
-    font-size: 24px;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.audio-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+}
+
+audio {
+    width: 80%;
+    height: 40px;
 }
 
 .track-info {
     text-align: center;
-    margin-top: 15px;
     font-size: 18px;
-    color: #666;
-}
-
-.message {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 16px;
-    color: #999;
-}
-
-.controls button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.controls button:hover {
-    background-color: #0056b3;
+    color: var(--muted-text-color);
+    margin-bottom: 20px;
 }
 
 .volume-control {
-    margin-top: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .volume-control label {
-    display: inline-block;
-    vertical-align: middle;
     margin-right: 10px;
     font-size: 16px;
-    color: #666;
+    color: var(--muted-text-color);
 }
 
 #volume {
-    width: 200px;
+    width: 250px;
     height: 25px;
     -webkit-appearance: none;
     background: transparent;
@@ -70,7 +77,7 @@ h1 {
     appearance: none;
     width: 15px;
     height: 15px;
-    background: #007bff;
+    background: var(--primary-color);
     cursor: pointer;
     border-radius: 50%;
 }
@@ -78,93 +85,73 @@ h1 {
 #volume::-moz-range-thumb {
     width: 15px;
     height: 15px;
-    background: #007bff;
+    background: var(--primary-color);
     cursor: pointer;
     border-radius: 50%;
-}
-
-.volume-control {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.volume-control label {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
-    font-size: 16px;
-    color: #666;
-}
-
-#volume {
-    width: 200px;
-    height: 25px;
-    -webkit-appearance: none;
-    background: transparent;
-    outline: none;
-}
-
-#volume::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    background: #007bff;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-#volume::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    background: #007bff;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-.controls button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.controls button:hover {
-    background-color: #0056b3;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.track-info {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 18px;
-    color: #666;
 }
 
 .message {
     text-align: center;
-    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted-text-color);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.theme-toggle span {
     font-size: 16px;
-    color: #999;
+    margin-right: 10px;
+    color: var(--muted-text-color);
 }
 
-.container {
-    width: 500px; 
-    margin: 50px auto; 
-    padding: 20px;
-    background-color: #f9f9f9; 
-    border-radius: 10px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+.theme-toggle input[type="checkbox"] {
+    display: none;
 }
 
+.theme-toggle .toggle {
+    width: 60px;
+    height: 30px;
+    background: #ccc;
+    border-radius: 15px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    padding: 2px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle .toggle::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    transition: left 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle input[type="checkbox"]:checked + .toggle {
+    background: var(--primary-color);
+}
+
+.theme-toggle input[type="checkbox"]:checked + .toggle::before {
+    left: calc(100% - 28px);
+}
+
+.dark-theme {
+    --secondary-color: #121212;
+    --text-color: #fff;
+    --muted-text-color: #999;
+    --box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
