@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJ я</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Аудио Трансляция</title>
 </head>
 <body>
     <div class="container">
@@ -13,21 +12,6 @@
             <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
             Ваш браузер не поддерживает аудиоплеер.
         </audio>
-        
-        <div class="track-info">Текущий трек: Прямой эфир</div>
-        
-        <div class="volume-control">
-            <label for="volume">Громкость:</label>
-            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-        </div>
-
-        <div class="theme-toggle">
-            <span>Ночной режим</span>
-            <label>
-                <input type="checkbox" onclick="document.body.classList.toggle('dark-theme')">
-                <span class="slider"></span>
-            </label>
-        </div>
     </div>
 </body>
 </html>
