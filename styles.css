@@ -1,12 +1,11 @@
-/* styles.css */
 
 :root {
-    --primary-color: #007bff; /* Основной цвет интерфейса */
-    --secondary-color: #f9f9f9; /* Цвет фона */
-    --text-color: #333; /* Цвет текста */
-    --muted-text-color: #666; /* Цвет второстепенного текста */
-    --border-radius: 10px; /* Радиус скругления углов */
-    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    --primary-color: #007bff; 
+    --secondary-color: #f9f9f9; 
+    --text-color: #333; 
+    --muted-text-color: #666; 
+    --border-radius: 10px; 
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 body {
