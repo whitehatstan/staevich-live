@@ -9,14 +9,12 @@
 <body>
     <div class="container">
         <h1>Слушайте Прямую Трансляцию</h1>
-        <div class="audio-player">
-            <audio id="audioPlayer" controls autoplay>
-                <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
-                Ваш браузер не поддерживает аудиоплеер.
-            </audio>
-        </div>
+        <audio id="audioPlayer" controls autoplay>
+            <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
+            Ваш браузер не поддерживает аудиоплеер.
+        </audio>
         
-        <div class="track-info" id="trackInfo">Текущий трек: Прямой эфир</div>
+        <div class="track-info">Текущий трек: Прямой эфир</div>
         
         <div class="volume-control">
             <label for="volume">Громкость:</label>
@@ -25,9 +23,9 @@
 
         <div class="theme-toggle">
             <span>Ночной режим</span>
-            <label class="toggle">
+            <label>
                 <input type="checkbox" onclick="document.body.classList.toggle('dark-theme')">
-                <span class="slider round"></span>
+                <span class="slider"></span>
             </label>
         </div>
     </div>
