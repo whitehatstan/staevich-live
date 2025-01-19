@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJ</title>
+    <title>DJ я</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Слушайте Прямую Трансляцию</h1>
-        <div class="audio-player">
-            <audio id="audioPlayer" controls autoplay>
-                <source src="http://84.201.174.250:8000/live-staevich" type="audio/mpeg">
-                Ваш браузер не поддерживает аудиоплеер.
-            </audio>
+        <div class="custom-audio-player">
+            <button id="playBtn" class="play-button">▶️</button>
+            <button id="pauseBtn" class="pause-button">⏸️</button>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
         </div>
         
         <div class="track-info" id="trackInfo">Текущий трек: Загрузка...</div>
-        
-        <div class="buttons">
-            <button id="playBtn">Play</button>
-            <button id="pauseBtn">Pause</button>
-        </div>
         
         <div class="volume-control">
             <label for="volume">Громкость:</label>
@@ -38,6 +34,8 @@
             <span class="slider round"></span>
         </label>
     </div>
+
+    <audio id="audioPlayer" src="http://84.201.174.250:8000/live-staevich" autoplay></audio>
 
     <script src="scripts.js"></script>
 </body>
