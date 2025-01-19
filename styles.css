@@ -1,11 +1,10 @@
-
 :root {
-    --primary-color: #007bff; 
-    --secondary-color: #f9f9f9; 
-    --text-color: #333; 
-    --muted-text-color: #666; 
-    --border-radius: 10px; 
-    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    --primary-color: #007bff; /* Основной цвет интерфейса */
+    --secondary-color: #f9f9f9; /* Цвет фона */
+    --text-color: #333; /* Цвет текста */
+    --muted-text-color: #666; /* Цвет второстепенного текста */
+    --border-radius: 10px; /* Радиус скругления углов */
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
 }
 
 body {
@@ -16,7 +15,8 @@ body {
 }
 
 .container {
-    width: 600px;
+    width: 90%; /* Используем процентную ширину для адаптации */
+    max-width: 600px; /* Ограничиваем максимальную ширину */
     margin: 50px auto;
     padding: 30px;
     background-color: var(--secondary-color);
@@ -153,4 +153,43 @@ audio {
     --text-color: #fff;
     --muted-text-color: #999;
     --box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .track-info,
+    .message {
+        font-size: 16px;
+    }
+
+    .volume-control label {
+        font-size: 14px;
+    }
+
+    #volume {
+        width: 150px;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+    }
+
+    .theme-toggle span {
+        font-size: 14px;
+    }
+
+    .theme-toggle .toggle {
+        width: 45px;
+        height: 23px;
+    }
+
+    .theme-toggle .toggle::before {
+        width: 19px;
+        height: 19px;
+    }
 }
