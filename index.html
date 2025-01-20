@@ -1,91 +1,298 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Spotify-like Streaming Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-gray-900 text-white font-roboto">
-    <header class="bg-gray-800 p-4 flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-            <img alt="Logo of the website, a stylized musical note" class="w-12 h-12" src="https://storage.googleapis.com/a1aa/image/tedbzpiJoegXiE2WLjL7JDTXovslxocjruxzU2wofqDceNcQB.jpg"/>
-            <h1 class="text-2xl font-bold">MyStream</h1>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Spotify-like Streaming Website
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   @keyframes blink {
+    0%,
+    100% {
+     opacity: 1;
+    }
+    50% {
+     opacity: 0;
+    }
+   }
+   @keyframes wave {
+    0% {
+     transform: scaleY(1);
+    }
+    50% {
+     transform: scaleY(2);
+    }
+    100% {
+     transform: scaleY(1);
+    }
+   }
+  </style>
+ </head>
+ <body class="bg-gray-900 text-white font-roboto">
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+   <div class="flex items-center space-x-4">
+    <img alt="Logo of the website, a stylized musical note" class="w-12 h-12" height="50" src="https://storage.googleapis.com/a1aa/image/tedbzpiJoegXiE2WLjL7JDTXovslxocjruxzU2wofqDceNcQB.jpg" width="50"/>
+    <h1 class="text-2xl font-bold">
+     MyStream
+    </h1>
+   </div>
+   <nav class="space-x-4">
+    <a class="hover:text-gray-400" href="#">
+     Home
+    </a>
+    <a class="hover:text-gray-400" href="#">
+     Broadcasts
+    </a>
+    <a class="hover:text-gray-400" href="#">
+     Register
+    </a>
+   </nav>
+  </header>
+  <main class="p-4">
+   <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-4">
+     Live Broadcast
+    </h2>
+    <div class="bg-gray-800 p-4 rounded-lg flex items-center space-x-4 justify-center">
+     <img alt="Live broadcast thumbnail, showing a microphone and sound waves" class="w-24 h-24 rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/R59srgYGVG7eLyBqEyHV3BeeC2U2Z3kbin2QZW4CpG3ieNcQB.jpg" width="100"/>
+     <div class="flex-1 max-w-md">
+      <h3 class="text-xl font-semibold text-center">
+       Current Live Stream
+      </h3>
+      <audio id="live-audio" src="https://your-stream-url.com/stream" class="hidden"></audio>
+      <div class="flex items-center space-x-4 mt-2 justify-center">
+       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime -= 10">
+        <i class="fas fa-backward">
+        </i>
+       </button>
+       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').play()">
+        <i class="fas fa-play">
+        </i>
+       </button>
+       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').pause()">
+        <i class="fas fa-pause">
+        </i>
+       </button>
+       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime += 10">
+        <i class="fas fa-forward">
+        </i>
+       </button>
+       <div class="flex items-center space-x-1">
+        <div class="text-red-500 text-lg font-bold animate-blink" style="animation: blink 1s infinite;">
+         On the Air
         </div>
-        <nav class="space-x-4">
-            <a class="hover:text-gray-400" href="#">Home</a>
-            <a class="hover:text-gray-400" href="#">Broadcasts</a>
-            <a class="hover:text-gray-400" href="#">Register</a>
-        </nav>
-    </header>
-    <main class="p-4">
-        <section class="mb-8">
-            <h2 class="text-3xl font-bold mb-4">Live Broadcast</h2>
-            <div class="bg-gray-800 p-4 rounded-lg flex items-center space-x-4 justify-center">
-                <img alt="Live broadcast thumbnail" class="w-24 h-24 rounded-lg" src="https://storage.googleapis.com/a1aa/image/R59srgYGVG7eLyBqEyHV3BeeC2U2Z3kbin2QZW4CpG3ieNcQB.jpg"/>
-                <div class="flex-1 max-w-md">
-                    <h3 class="text-xl font-semibold text-center">Current Live Stream</h3>
-                    <audio id="live-audio" src="https://your-stream-url.com/stream" class="hidden"></audio>
-                    <div class="flex items-center space-x-4 mt-2 justify-center">
-                        <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime -= 10">
-                            <i class="fas fa-backward"></i>
-                        </button>
-                        <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').play()">
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').pause()">
-                            <i class="fas fa-pause"></i>
-                        </button>
-                        <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime += 10">
-                            <i class="fas fa-forward"></i>
-                        </button>
-                        <div class="flex items-center space-x-1">
-                            <div class="text-red-500 text-lg font-bold animate-blink" style="animation: blink 1s infinite;">On the Air</div>
-                            <div class="flex space-x-1">
-                                <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite;"></div>
-                                <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.1s;"></div>
-                                <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.2s;"></div>
-                                <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.3s;"></div>
-                                <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.4s;"></div>
-                            </div>
-                        </div>
-                        <input class="w-24 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer" type="range" id="volume-slider" min="0" max="100" value="100" oninput="updateVolume(this.value)"/>
-                        <div class="text-white" id="volume-percentage">100%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="mb-8">
-            <h2 class="text-3xl font-bold mb-4">Recorded Broadcasts</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Recorded Broadcasts will be added here -->
-            </div>
-        </section>
-        <section>
-            <h2 class="text-3xl font-bold mb-4">Register</h2>
-            <form class="bg-gray-800 p-4 rounded-lg space-y-4">
-                <div>
-                    <label class="block text-sm font-medium" for="username">Username</label>
-                    <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="username" type="text"/>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium" for="email">Email</label>
-                    <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" type="email"/>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium" for="password">Password</label>
-                    <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="password" type="password"/>
-                </div>
-                <button class="w-full p-2 bg-blue-600 rounded-lg hover:bg-blue-700" type="submit">Register</button>
-            </form>
-        </section>
-    </main>
-    <footer class="bg-gray-800 p-4 text-center">
-        <p>© 2023 MyStream. All rights reserved.</p>
-    </footer>
-    <script src="script.js"></script>
-</body>
+        <div class="flex space-x-1">
+         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite;">
+         </div>
+         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.1s;">
+         </div>
+         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.2s;">
+         </div>
+         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.3s;">
+         </div>
+         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.4s;">
+         </div>
+        </div>
+       </div>
+       <input class="w-24 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer" type="range" id="volume-slider" min="0" max="100" value="100" oninput="updateVolume(this.value)"/>
+       <div class="text-white" id="volume-percentage">
+        100%
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-4">
+     Recorded Broadcasts
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a DJ mixing music" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/UzgW1Qym5LbxPxL43FsgCLvh8RFhLlXZ5ffqZTEwC55QfGOoA.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 1
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording1" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_1.mp3" href="https://your-server-url.com/recording1.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a band performing live" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/RkTTDE02JF5GNN5Q85gjDjJJc0D53UohjoyyTHPFijk03wBF.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 2
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording2" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_2.mp3" href="https://your-server-url.com/recording2.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a radio host speaking into a microphone" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/uvk2Fzy3JaqEI98iozekWvQADb7iedTloBg8aCHpcUnXfGOoA.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 3
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording3" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_3.mp3" href="https://your-server-url.com/recording3.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a podcast setup with microphones and headphones" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/Zgykc4xBpqLebq1fF7lsKXIC3M1WhmqWT33WPjtgTtDVfGOoA.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 4
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording4" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_4.mp3" href="https://your-server-url.com/recording4.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a live concert with a cheering crowd" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/mtIEeaheOeXBxJaKfEkBGMfZomhFeQeZWNMuxIDs8cqimvhDKA.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 5
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording5" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_5.mp3" href="https://your-server-url.com/recording5.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+     <div class="bg-gray-800 p-4 rounded-lg">
+      <img alt="Thumbnail of a recorded broadcast, showing a music producer working on a laptop" class="w-full h-40 object-cover rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/lhcwzLP9FHpQL9910JVE9pUnn4nfFe2ke2AYDdeMMBfj6b4gC.jpg" width="300"/>
+      <h3 class="text-xl font-semibold mb-2">
+       Broadcast Title 6
+      </h3>
+      <audio class="w-full mb-2" controls="">
+       <source src="https://your-stream-url.com/recording6" type="audio/mpeg"/>
+       Your browser does not support the audio element.
+      </audio>
+      <div class="flex justify-between items-center">
+       <button class="text-red-500 hover:text-red-700">
+        <i class="fas fa-heart">
+        </i>
+        Like
+       </button>
+       <a class="text-blue-500 hover:text-blue-700" download="Broadcast_Title_6.mp3" href="https://your-server-url.com/recording6.mp3">
+        <i class="fas fa-download">
+        </i>
+        Download
+       </a>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section>
+    <h2 class="text-3xl font-bold mb-4">
+     Register
+    </h2>
+    <form class="bg-gray-800 p-4 rounded-lg space-y-4">
+     <div>
+      <label class="block text-sm font-medium" for="username">
+       Username
+      </label>
+      <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="username" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium" for="email">
+       Email
+      </label>
+      <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" type="email"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium" for="password">
+       Password
+      </label>
+      <input class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="password" type="password"/>
+     </div>
+     <button class="w-full p-2 bg-blue-600 rounded-lg hover:bg-blue-700" type="submit">
+      Register
+     </button>
+    </form>
+   </section>
+  </main>
+  <footer class="bg-gray-800 p-4 text-center">
+   <p>
+    © 2023 MyStream. All rights reserved.
+   </p>
+  </footer>
+  <script>
+   const audioElement = document.getElementById('live-audio');
+   const volumeSlider = document.getElementById('volume-slider');
+   const volumePercentage = document.getElementById('volume-percentage');
+
+   function updateVolume(value) {
+    const volume = value / 100;
+    audioElement.volume = volume;
+    volumePercentage.textContent = `${value}%`;
+   }
+
+   volumeSlider.addEventListener('input', (event) => {
+    updateVolume(event.target.value);
+   });
+  </script>
+ </body>
 </html>
