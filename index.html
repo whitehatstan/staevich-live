@@ -1,131 +1,221 @@
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   DJ STÆVICH
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-  <style>
-   @keyframes blink {
-    0%,
-    100% {
-     opacity: 1;
-    }
-    50% {
-     opacity: 0;
-    }
-   }
-   @keyframes wave {
-    0% {
-     transform: scaleY(1);
-    }
-    50% {
-     transform: scaleY(2);
-    }
-    100% {
-     transform: scaleY(1);
-    }
-   }
-  </style>
- </head>
- <body class="bg-gray-900 text-white font-roboto">
-  <header class="bg-gray-800 p-4 flex justify-between items-center">
-   <div class="flex items-center space-x-4">
-    <img alt="Logo of the website, a stylized musical note" class="w-12 h-12" height="2754" src="med01.png" width="1803"/>
-    <h1 class="text-2xl font-bold">
-     DJ STÆVICH Live Mixes
-    </h1>
-   </div>
-<!--    <nav class="space-x-4">
-    <a class="hover:text-gray-400" href="#">
-     Home
-    </a>
-    <a class="hover:text-gray-400" href="#">
-     Broadcasts
-    </a>
-    <a class="hover:text-gray-400" href="#">
-     Register
-    </a>
-   </nav> -->
-  </header>
-  <main class="p-4">
-   <section class="mb-8">
-    <h2 class="text-3xl font-bold mb-4">
-     Live Broadcast
-    </h2>
-    <div class="bg-gray-800 p-4 rounded-lg flex items-center space-x-4 justify-center">
-     <img alt="Live broadcast thumbnail, showing a microphone and sound waves" class="w-24 h-24 rounded-lg" height="300" src="live-staevich-icon.png" width="300"/>
-     <div class="flex-1 max-w-md">
-      <h3 class="text-xl font-semibold text-center">
-       Current Live Stream
-      </h3>
-      <audio id="live-audio" src="https://staevich.online/live-staevich" class="hidden"></audio>
-      <div class="flex items-center space-x-4 mt-2 justify-center">
-       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime -= 10">
-        <i class="fas fa-backward">
-        </i>
-       </button>
-       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').play()">
-        <i class="fas fa-play">
-        </i>
-       </button>
-       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').pause()">
-        <i class="fas fa-pause">
-        </i>
-       </button>
-       <button class="text-2xl text-white hover:text-gray-400" onclick="document.getElementById('live-audio').currentTime += 10">
-        <i class="fas fa-forward">
-        </i>
-       </button>
-       <div class="flex items-center space-x-1">
-        <div class="text-red-500 text-lg font-bold animate-blink" style="animation: blink 1s infinite;">
-         On Air
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>DJ STÆVICH LIVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<header class="bg-white shadow-md">
+    <div class="container mx-auto flex items-center justify-between p-4">
+        <div class="flex items-center">
+            <img alt="DJ Stævich logo" class="h-10 w-10" height="40" src="icon01.png" width="40"/>
+            <nav class="ml-4">
+                <a class="text-lg font-bold text-black mr-4" href="#">LIVE</a>
+                <a class="text-lg text-gray-500" href="#">ABOUT</a>
+            </nav>
         </div>
-        <div class="flex space-x-1">
-         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite;">
-         </div>
-         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.1s;">
-         </div>
-         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.2s;">
-         </div>
-         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.3s;">
-         </div>
-         <div class="w-1 h-6 bg-red-500 animate-wave" style="animation: wave 1s infinite 0.4s;">
-         </div>
-        </div>
-       </div>
-       <input class="w-24 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer" type="range" id="volume-slider" min="0" max="100" value="100" oninput="updateVolume(this.value)"/>
-       <div class="text-white" id="volume-percentage">
-        100%
-       </div>
-      </div>
-     </div>
     </div>
-   </section>
-   </main>
-  <footer class="bg-gray-800 p-4 text-center">
-   <p>
-    © 2025 DJ STÆVICH. All rights reserved.
-   </p>
-  </footer>
-  <script>
-   const audioElement = document.getElementById('live-audio');
-   const volumeSlider = document.getElementById('volume-slider');
-   const volumePercentage = document.getElementById('volume-percentage');
+</header>
+<main class="container mx-auto p-4">
+    <section class="flex flex-col md:flex-row items-center md:items-start md:space-x-4">
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4 md:mb-0" style="height: 400px; width: 400px;">
+            <img alt="Live Mixes DJ Stævich" class="rounded-lg" height="400" src="live-staevich-icon.png" width="400"/>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 flex-1 flex items-center justify-center" style="height: 400px; width: 400px;">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">DJ STÆVICH LIVE</h1>
+                <audio id="audioPlayer" src="https://staevich.online/live-staevich"></audio>
+                <div id="onAirIndicator" class="text-red-500 text-lg font-bold mb-4">OFF AIR</div>
+                <div class="flex items-center justify-center space-x-4">
+                    <button id="playButton" class="text-4xl text-gray-700">
+                        <i class="fas fa-play" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"></i>
+                    </button>
+                    <button id="pauseButton" class="text-4xl text-gray-700">
+                        <i class="fas fa-pause" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" class="w-full"/>
+                    <div id="volumePercentage" class="text-gray-700 mt-2">Volume: 100%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="flex flex-col md:flex-row items-start md:space-x-4 mt-4">
+        <div class="bg-white rounded-lg shadow-md p-4 flex-1 mb-4 md:mb-0" style="height: 400px;">
+            <p class="mb-4">Добро пожаловать на мою прямую трансляцию. Здесь вы найдёте мои диджейские сеты, которые я играю в прямом эфире для вас.</p>
+            <p class="mb-4">Я миксую музыку в стилях house, techno, dnb и trance. Каждый микс — это небольшое музыкальное путешествие.</p>
+            <p class="mb-4">Эти треки подойдут для самых разных ситуаций:</p>
+            <ul class="list-disc list-inside mb-4">
+                <li>Утром, они помогут встретить новый день.</li>
+                <li>В дороге создадут отличный фон для путешествий.</li>
+                <li>Во время прогулки помогут расслабиться под ритмичную музыку.</li>
+            </ul>
+            <p class="mb-4">В моём плейлисте есть как энергичные сеты для вечеринок, так и более спокойные для расслабления.</p>
+            <p class="mb-4">Не забудьте подписаться, чтобы не пропустить новые релизы и быть в курсе моих музыкальных экспериментов!</p>
+            <p>Спасибо, что слушаете вкусную музыку вместе со мной!</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4" style="height: 400px; width: 400px;">
+            <img alt="Never Die" class="rounded-lg" height="400" src="hren01.png" width="400"/>
+        </div>
+    </section>
+    <section class="mt-8">
+        <h2 class="text-xl font-bold mb-4">Records</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img alt="Live Broadcast #1" class="rounded-lg mb-2" height="200" src="hren01.png" width="200"/>
+                <h3 class="text-lg font-bold">Live Broadcast #1</h3>
+                <p class="text-gray-500">Drum'n'Bass</p>
+                <div class="flex items-center justify-center space-x-4 mt-2">
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-pause-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- <div class="bg-white rounded-lg shadow-md p-4">
+                <img alt="Live Broadcast #1" class="rounded-lg mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/4ejmwqQx7i1XbyQpjY3ExwFzTC1zDvuzxlfrqYVY4StHOVIUA.jpg" width="200"/>
+                <h3 class="text-lg font-bold">Live Broadcast #1</h3>
+                <p class="text-gray-500">Drum'n'Bass</p>
+                <div class="flex items-center justify-center space-x-4 mt-2">
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-pause-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img alt="Live Broadcast #1" class="rounded-lg mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/4ejmwqQx7i1XbyQpjY3ExwFzTC1zDvuzxlfrqYVY4StHOVIUA.jpg" width="200"/>
+                <h3 class="text-lg font-bold">Live Broadcast #1</h3>
+                <p class="text-gray-500">Drum'n'Bass</p>
+                <div class="flex items-center justify-center space-x-4 mt-2">
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-pause-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img alt="Live Broadcast #1" class="rounded-lg mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/4ejmwqQx7i1XbyQpjY3ExwFzTC1zDvuzxlfrqYVY4StHOVIUA.jpg" width="200"/>
+                <h3 class="text-lg font-bold">Live Broadcast #1</h3>
+                <p class="text-gray-500">Drum'n'Bass</p>
+                <div class="flex items-center justify-center space-x-4 mt-2">
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-pause-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img alt="Live Broadcast #1" class="rounded-lg mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/4ejmwqQx7i1XbyQpjY3ExwFzTC1zDvuzxlfrqYVY4StHOVIUA.jpg" width="200"/>
+                <h3 class="text-lg font-bold">Live Broadcast #1</h3>
+                <p class="text-gray-500">Drum'n'Bass</p>
+                <div class="flex items-center justify-center space-x-4 mt-2">
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-pause-circle"></i>
+                    </button>
+                    <button class="text-2xl text-gray-700">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> -->
+<footer class="bg-black text-white mt-8">
+    <div class="container mx-auto p-4 flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-4 md:mb-0">
+            <img alt="DJ Stævich logo" class="h-10 w-10" height="40" src="icon01.png" width="40"/>
+            <span class="ml-2 text-lg font-bold">DJ STÆVICH</span>
+        </div>
+        <div class="flex space-x-4 mb-4 md:mb-0">
+            <a class="text-gray-400 hover:text-white" href="#">About</a>
+            <a class="text-gray-400 hover:text-white" href="#">Contact</a>
+        </div>
+        <div class="flex space-x-4">
+            <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-linkedin"></i></a>
+            <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-facebook"></i></a>
+            <a class="text-gray-400 hover:text-white" href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
+    <div class="text-center text-gray-500 mt-4">© 2025 All Rights Reserved.</div>
+</footer>
+<script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumePercentage = document.getElementById('volumePercentage');
+    const onAirIndicator = document.getElementById('onAirIndicator');
 
-   function updateVolume(value) {
-    const volume = value / 100;
-    audioElement.volume = volume;
-    volumePercentage.textContent = `${value}%`;
-   }
+    playButton.addEventListener('click', () => {
+        audioPlayer.play();
+        playButton.classList.add('hidden');
+        pauseButton.classList.remove('hidden');
+    });
 
-   volumeSlider.addEventListener('input', (event) => {
-    updateVolume(event.target.value);
-   });
-  </script>
- </body>
+    pauseButton.addEventListener('click', () => {
+        audioPlayer.pause();
+        pauseButton.classList.add('hidden');
+        playButton.classList.remove('hidden');
+    });
+
+    volumeSlider.addEventListener('input', (event) => {
+        audioPlayer.volume = event.target.value;
+        volumePercentage.textContent = `Volume: ${Math.round(event.target.value * 100)}%`;
+    });
+
+    function checkOnAirStatus() {
+        fetch('https://staevich.online/status.xsl')
+            .then(response => response.json())
+            .then(data => {
+                const source = data.icestats.source;
+                if (source && source.listeners > 0) {
+                    onAirIndicator.textContent = 'ON AIR';
+                    onAirIndicator.classList.remove('text-red-500');
+                    onAirIndicator.classList.add('text-green-500');
+                } else {
+                    onAirIndicator.textContent = 'OFF AIR';
+                    onAirIndicator.classList.remove('text-green-500');
+                    onAirIndicator.classList.add('text-red-500');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching on-air status:', error);
+                onAirIndicator.textContent = 'OFF AIR';
+                onAirIndicator.classList.remove('text-green-500');
+                onAirIndicator.classList.add('text-red-500');
+            });
+    }
+
+    setInterval(checkOnAirStatus, 60000);
+    checkOnAirStatus();
+</script>
+</body>
 </html>
