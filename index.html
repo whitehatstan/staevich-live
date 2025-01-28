@@ -24,8 +24,8 @@
             <div class="bg-white rounded-lg shadow-md p-4 mb-4 md:mb-0 w-full md:w-1/2">
                 <img alt="Live Mixes DJ Stævich" class="rounded-lg w-full" src="live-staevich-icon.png">
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4 w-full md:w-1/2 flex items-center justify-center">
-                <div class="text-center">
+            <div class="bg-white rounded-lg shadow-md p-4 w-full md:w-1/2 flex flex-col">
+                <div class="text-center flex-grow">
                     <h1 class="text-4xl font-bold mb-4">DJ STÆVICH LIVE</h1>
                     <audio id="audioPlayer" src="https://staevich.online/live-staevich"></audio>
                     <div id="onAirIndicator" class="text-red-500 text-lg font-bold mb-4">OFF AIR</div>
@@ -134,7 +134,7 @@
         });
 
         function checkOnAirStatus() {
-            fetch('https://staevich.online/live-staevich')
+            fetch('https://staevich.online/status.xsl')
                 .then(response => response.json())
                 .then(data => {
                     const source = data.icestats.source;
