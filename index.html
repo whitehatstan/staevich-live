@@ -111,7 +111,7 @@
 
                 <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2">
                     <img alt="Never Die" class="rounded-lg w-full h-full object-cover" 
-                         src="hren01.png" width="600" height="400" loading="lazy">
+                         src="med01.png" width="600" height="400" loading="lazy">
                 </div>
             </div>
         </section>
@@ -122,7 +122,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow">
                     <img alt="Live Broadcast #1" class="rounded-t-lg w-full h-48 object-cover" 
-                         src="hren01.png" loading="lazy">
+                         src="med01.png" loading="lazy">
                     <div class="p-4">
                         <h3 class="text-xl font-bold mb-2">Live Session #24</h3>
                         <div class="flex justify-between items-center">
@@ -174,6 +174,8 @@
         </div>
     </footer>
 
+    <audio id="audioPlayer" src="https://staevich.online/stream.mp3"></audio>
+
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
         const playButton = document.getElementById('playButton');
@@ -196,7 +198,7 @@
 
         volumeSlider.addEventListener('input', (event) => {
             audioPlayer.volume = event.target.value;
-            volumePercentage.textContent = `Volume: ${Math.round(event.target.value * 100)}%`;
+            volumePercentage.textContent = `${Math.round(event.target.value * 100)}%`;
         });
 
         function checkOnAirStatus() {
