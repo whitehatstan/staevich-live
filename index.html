@@ -9,8 +9,9 @@
     <title>DJ STÆVICH LIVE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        /* Кастомные анимации */
+        /* Кастомные стили */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -18,165 +19,239 @@
         .animate-pulse-custom {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
+        /* Стили для матричной анимации */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Микроанимации */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto flex items-center justify-between p-4">
-            <div class="flex items-center">
-                <img alt="DJ Stævich logo" class="h-12 w-12 rounded-full" 
-                     src="icon01.png" width="48" height="48" loading="lazy">
-                <nav class="ml-4 flex space-x-4">
-                    <a class="text-lg font-semibold hover:text-red-500 transition-colors" href="#live">LIVE</a>
-                    <a class="text-lg text-gray-600 hover:text-red-500 transition-colors" href="#about">ABOUT</a>
-                    <a class="text-lg text-gray-600 hover:text-red-500 transition-colors" href="#music">MUSIC</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container mx-auto p-4">
-        <!-- Live Section -->
-        <section id="live" class="mb-16 scroll-mt-20">
-            <div class="flex flex-col lg:flex-row gap-6">
-                <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2">
-                    <img alt="Live Mixes DJ Stævich" class="rounded-lg w-full h-64 object-cover" 
-                         src="live-staevich-icon.png" width="600" height="400" loading="eager">
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="content-layer">
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto flex items-center justify-between p-4">
+                <div class="flex items-center">
+                    <img alt="DJ Stævich logo" class="h-12 w-12 rounded-full hover-lift" 
+                         src="icon01.png" width="48" height="48" loading="lazy">
+                    <nav class="ml-4 flex space-x-4">
+                        <a class="text-lg font-semibold hover:text-red-500 transition-colors" href="#live">LIVE</a>
+                        <a class="text-lg text-gray-600 hover:text-red-500 transition-colors" href="#about">ABOUT</a>
+                        <a class="text-lg text-gray-600 hover:text-red-500 transition-colors" href="#music">MUSIC</a>
+                    </nav>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2">
-                    <div class="text-center space-y-6">
-                        <h1 class="text-5xl font-bold bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
-                            DJ STÆVICH LIVE
-                        </h1>
-                        
-                        <div class="flex items-center justify-center space-x-2">
-                            <div id="onAirIndicator" class="flex items-center">
-                                <span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span>
-                                <span class="font-bold">OFF AIR</span>
-                            </div>
-                        </div>
+            </div>
+        </header>
 
-                        <div class="flex justify-center items-center space-x-6">
-                            <button id="playButton" class="p-4 bg-red-500 rounded-full hover:bg-red-600 transition-colors shadow-lg" 
-                                    aria-label="Play">
-                                <i class="fas fa-play text-white text-2xl"></i>
-                            </button>
-                            <button id="pauseButton" class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors shadow-lg hidden" 
-                                    aria-label="Pause">
-                                <i class="fas fa-pause text-gray-700 text-2xl"></i>
-                            </button>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-gray-600"><i class="fas fa-volume-up"></i></span>
-                                <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" 
-                                       class="w-full accent-red-500">
-                                <span id="volumePercentage" class="text-gray-600">100%</span>
-                            </div>
-                        </div>
+        <main class="container mx-auto p-4">
+            <!-- Live Section -->
+            <section id="live" class="mb-16 scroll-mt-20">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2 hover-lift">
+                        <img alt="Live Mixes DJ Stævich" class="rounded-lg w-full h-64 object-cover" 
+                             src="live-staevich-icon.png" width="600" height="400" loading="eager">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="mb-16 scroll-mt-20">
-            <div class="flex flex-col lg:flex-row gap-6">
-                <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2 space-y-4">
-                    <h2 class="text-3xl font-bold mb-4">О трансляции</h2>
-                    <p class="text-lg leading-relaxed">Добро пожаловать на мою прямую трансляцию. Здесь вы найдёте диджейские сеты в стилях:</p>
                     
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-red-50 p-4 rounded-lg flex items-center">
-                            <i class="fas fa-drum text-red-500 mr-3"></i>
-                            <span>House & Techno</span>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-lg flex items-center">
-                            <i class="fas fa-bolt text-purple-500 mr-3"></i>
-                            <span>Drum'n'Bass</span>
-                        </div>
-                    </div>
+                    <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2 hover-lift">
+                        <div class="text-center space-y-6">
+                            <h1 class="text-5xl font-bold bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
+                                DJ STÆVICH LIVE
+                            </h1>
+                            
+                            <div class="flex items-center justify-center space-x-2">
+                                <div id="onAirIndicator" class="flex items-center">
+                                    <span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span>
+                                    <span class="font-bold">OFF AIR</span>
+                                </div>
+                            </div>
 
-                    <div class="prose max-w-none">
-                        <p>Каждый микс — это уникальное музыкальное путешествие, идеально подходящее для:</p>
-                        <ul class="list-disc pl-6 marker:text-red-500">
-                            <li>Энергичного начала дня</li>
-                            <li>Создания атмосферы на вечеринке</li>
-                            <li>Ритмичного сопровождения тренировок</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2">
-                    <img alt="Never Die" class="rounded-lg w-full h-full object-cover" 
-                         src="med01.png" width="600" height="400" loading="lazy">
-                </div>
-            </div>
-        </section>
-
-        <!-- Music Section -->
-        <section id="music" class="scroll-mt-20">
-            <h2 class="text-3xl font-bold mb-6">Последние релизы</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow">
-                    <img alt="Live Broadcast #1" class="rounded-t-lg w-full h-48 object-cover" 
-                         src="med01.png" loading="lazy">
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold mb-2">Live Session #24</h3>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Drum'n'Bass</span>
-                            <div class="flex space-x-2">
-                                <button class="text-red-500 hover:text-red-600" aria-label="Play">
-                                    <i class="fas fa-play-circle text-2xl"></i>
+                            <div class="flex justify-center items-center space-x-6">
+                                <button id="playButton" class="p-4 bg-red-500 rounded-full hover:bg-red-600 transition-colors shadow-lg hover-lift" 
+                                        aria-label="Play">
+                                    <i class="fas fa-play text-white text-2xl"></i>
                                 </button>
-                                <button class="text-gray-500 hover:text-gray-600" aria-label="Download">
-                                    <i class="fas fa-download text-2xl"></i>
+                                <button id="pauseButton" class="p-4 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors shadow-lg hidden hover-lift" 
+                                        aria-label="Pause">
+                                    <i class="fas fa-pause text-gray-700 text-2xl"></i>
                                 </button>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-gray-600"><i class="fas fa-volume-up"></i></span>
+                                    <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" 
+                                           class="w-full accent-red-500">
+                                    <span id="volumePercentage" class="text-gray-600">100%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </article>
-                <!-- Повторить для других релизов -->
-            </div>
-        </section>
-    </main>
+                </div>
+            </section>
 
-    <footer class="bg-black text-white mt-16">
-        <div class="container mx-auto py-8 px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-                <div class="flex items-center space-x-3">
-                    <img alt="DJ Stævich logo" class="h-10 w-10" src="icon01.png" width="40" height="40">
-                    <span class="text-xl font-bold">DJ STÆVICH</span>
+            <!-- About Section -->
+            <section id="about" class="mb-16 scroll-mt-20">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2 space-y-4 hover-lift">
+                        <h2 class="text-3xl font-bold mb-4">О трансляции</h2>
+                        <p class="text-lg leading-relaxed">Добро пожаловать на мою прямую трансляцию. Здесь вы найдёте диджейские сеты в стилях:</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-red-50 p-4 rounded-lg flex items-center">
+                                <i class="fas fa-drum text-red-500 mr-3"></i>
+                                <span>House & Techno</span>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg flex items-center">
+                                <i class="fas fa-bolt text-purple-500 mr-3"></i>
+                                <span>Drum'n'Bass</span>
+                            </div>
+                        </div>
+
+                        <div class="prose max-w-none">
+                            <p>Каждый микс — это уникальное музыкальное путешествие, идеально подходящее для:</p>
+                            <ul class="list-disc pl-6 marker:text-red-500">
+                                <li>Энергичного начала дня</li>
+                                <li>Создания атмосферы на вечеринке</li>
+                                <li>Ритмичного сопровождения тренировок</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-xl p-6 w-full lg:w-1/2 hover-lift">
+                        <img alt="Never Die" class="rounded-lg w-full h-full object-cover" 
+                             src="med01.png" width="600" height="400" loading="lazy">
+                    </div>
                 </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://vk.com/stanislav.mishkevich" target="_blank" 
-                       class ="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
-                        <i class="fab fa-vk fa-lg"></i>
-                    </a>
-                    <a href="https://instagram.com/mishkevich.stanislav" target="_blank" 
-                       class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="https://youtube.com/@stanislav.mishkevich" target="_blank" 
-                       class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                    <a href="https://t.me/MISHKEVICH_STANISLAV" target="_blank" 
-                       class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
-                        <i class="fab fa-telegram fa-lg"></i>
-                    </a>
+            </section>
+
+            <!-- Music Section -->
+            <section id="music" class="scroll-mt-20">
+                <h2 class="text-3xl font-bold mb-6">Последние релизы</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow hover-lift">
+                        <img alt="Live Broadcast #1" class="rounded-t-lg w-full h-48 object-cover" 
+                             src="med01.png" loading="lazy">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Live Session #24</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Drum'n'Bass</span>
+                                <div class="flex space-x-2">
+                                    <button class="text-red-500 hover:text-red-600" aria-label="Play">
+                                        <i class="fas fa-play-circle text-2xl"></i>
+                                    </button>
+                                    <button class="text-gray-500 hover:text-gray-600" aria-label="Download">
+                                        <i class="fas fa-download text-2xl"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Повторить для других релизов -->
                 </div>
+            </section>
+        </main>
+
+        <footer class="bg-black text-white mt-16">
+            <div class="container mx-auto py-8 px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                    <div class="flex items-center space-x-3">
+                        <img alt="DJ Stævich logo" class="h-10 w-10" src="icon01.png" width="40" height="40">
+                        <span class="text-xl font-bold">DJ STÆVICH</span>
+                    </div>
+                    
+                    <div class="flex space-x-6">
+                        <a href="https://vk.com/stanislav.mishkevich" target="_blank" 
+                           class ="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
+                            <i class="fab fa-vk fa-lg"></i>
+                        </a>
+                        <a href="https://instagram.com/mishkevich.stanislav" target="_blank" 
+                           class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://youtube.com/@stanislav.mishkevich" target="_blank" 
+                           class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                        <a href="https://t.me/MISHKEVICH_STANISLAV" target="_blank" 
+                           class="text-gray-400 hover:text-white transition-colors" rel="noopener noreferrer">
+                            <i class="fab fa-telegram fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center text-gray-500 mt-4" id="currentYear">© <span id="year"></span> Все права защищены.</div>
             </div>
-            <div class="text-center text-gray-500 mt-4" id="currentYear">© <span id="year"></span> Все права защищены.</div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <audio id="audioPlayer" src="https://staevich.online/stream.mp3"></audio>
 
     <script>
+        // Матричная анимация
+        const initMatrixAnimation = () => {
+            const canvas = document.getElementById('matrix-canvas');
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+            // Настройка камеры
+            camera.position.z = 100;
+
+            // Создание символов
+            const symbolGeometry = new THREE.BufferGeometry();
+            const vertices = new Float32Array(5000 * 3);
+            symbolGeometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+            const material = new THREE.LineBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.1 });
+            const lines = new THREE.LineSegments(symbolGeometry, material);
+            scene.add(lines);
+
+            // Анимация
+            const animate = () => {
+                requestAnimationFrame(animate);
+                
+                const positions = symbolGeometry.attributes.position.array;
+                for (let i = 0; i < positions.length; i += 6) {
+                    positions[i + 1] -= 0.5;
+                    if (positions[i + 1] < -50) positions[i + 1] = 50;
+                }
+                symbolGeometry.attributes.position.needsUpdate = true;
+
+                renderer.render(scene, camera);
+            };
+
+            // Обработка ресайза
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            animate();
+        };
+
+        // Инициализация матрицы после загрузки страницы
+        window.addEventListener('DOMContentLoaded', initMatrixAnimation);
+
+        // Ваш исходный JavaScript код для аудиоплеера
         const audioPlayer = document.getElementById('audioPlayer');
         const playButton = document.getElementById('playButton');
         const pauseButton = document.getElementById('pauseButton');
